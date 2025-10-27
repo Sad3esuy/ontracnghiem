@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Thi Trắc Nghiệm</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Hệ Thống Ôn Thi Trắc Nghiệm</h1>
+            <nav>
+                <button class="nav-btn active" data-page="dashboard">Trang chủ</button>
+                <button class="nav-btn" data-page="add-questions">Thêm câu hỏi</button>
+                <button class="nav-btn" data-page="practice">Ôn tập</button>
+                <button class="nav-btn" data-page="statistics">Thống kê</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Dashboard -->
+            <section id="dashboard" class="page active">
+                <div class="dashboard">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Tổng câu hỏi</h3>
+                            <div class="stat-number" id="total-questions">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Đã ôn tập</h3>
+                            <div class="stat-number" id="practiced-questions">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Tỷ lệ đúng</h3>
+                            <div class="stat-number" id="accuracy-rate">0%</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Chuỗi đúng</h3>
+                            <div class="stat-number" id="streak">0</div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>Hoạt động gần đây</h3>
+                        <div id="recent-activity-list">Chưa có hoạt động nào</div>
+                    </div>
+
+                    <div class="backup-section">
+                        <h3>Sao lưu dữ liệu</h3>
+                        <p>Xuất dữ liệu để sao lưu hoặc chuyển sang máy khác</p>
+                        <div class="backup-actions">
+                            <button id="export-data" class="backup-btn export-btn">
+                                <span>📥</span> Xuất dữ liệu
+                            </button>
+                            <button id="import-data" class="backup-btn import-btn">
+                                <span>📤</span> Nhập dữ liệu
+                            </button>
+                            <input type="file" id="import-file" accept=".json" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Questions -->
+            <section id="add-questions" class="page">
+                <div class="add-questions">
+                    <h2>Thêm câu hỏi mới</h2>
+
+                    <!-- Subject Management -->
+                    <div class="subject-management">
+                        <div class="subject-selection">
+                            <label for="subject-select">Chọn bài học:</label>
+                            <select id="subject-select">
+                                <option value="">Chọn bài học...</option>
+                            </select>
+                            <button id="new-subject-btn">Tạo bài mới</button>
+                            <button id="manage-subjects-btn">Quản lý</button>
+                        </div>
+
+                        <div class="new-subject-form hidden">
+                            <input type="text" id="new-subject-name" placeholder="Tên bài học mới...">
+                            <button id="create-subject-btn">Tạo</button>
+                            <button id="cancel-subject-btn">Hủy</button>
+                        </div>
+
+                        <div class="manage-subjects-panel hidden">
+                            <h3>Quản lý bài học</h3>
+                            <div id="subjects-list"></div>
+                            <button id="close-manage-subjects">Đóng</button>
+                        </div>
+                    </div>
+
+                    <div class="format-guide">
+                        <h3>Hướng dẫn format:</h3>
+                        <pre>Câu 1: Đối tượng nghiên cứu của kinh tế chính trị là:
+
+A. Nghiên cứu mặt kỹ thuật sản xuất
+B. Nghiên cứu mặt xã hội của sản xuất
+C. Nghiên cứu mặt Chính trị của sản xuất
+D. Nghiên cứu mặt Văn hóa của sản xuất
+
+Đáp án đúng: B
+
+Câu 2: Phương pháp nghiên cứu là:
+
+A. Phân tích thống kê
+B. Tư duy lozich
+C. Trừu tượng hóa khoa học
+D. Biện chứng duy vật
+
+Đáp án đúng: C</pre>
+                        <p><strong>Lưu ý:</strong> Sử dụng chữ IN HOA (A., B., C., D.) cho các đáp án. Cuối mỗi câu hỏi phải có dòng "Đáp án đúng: X" (X là A, B, C hoặc D).</p>
+                        <p><strong>Tính năng:</strong> Chọn bài học ở trên để phân loại câu hỏi. Có thể tạo bài học mới hoặc chọn từ danh sách có sẵn. Click "Lưu tất cả" để lưu nhiều câu hỏi cùng lúc.</p>
+                    </div>
+                    <textarea id="question-input" placeholder="Dán câu hỏi theo format ở trên..."></textarea>
+                    <div class="question-actions">
+                        <button id="parse-questions">Phân tích câu hỏi</button>
+                        <button id="save-all-questions" class="hidden">Lưu tất cả</button>
+                        <button id="clear-input">Xóa</button>
+                    </div>
+                    <div id="parsed-questions"></div>
+                </div>
+            </section>
+
+            <!-- Practice -->
+            <section id="practice" class="page">
+                <div class="practice">
+                    <h2>Chế độ ôn tập</h2>
+
+                    <!-- Subject Filter for Practice -->
+                    <div class="practice-options">
+                        <div class="option-group">
+                            <label for="practice-subject-select">Bài học</label>
+                            <select id="practice-subject-select">
+                                <option value="">Tất cả bài học</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="practice-mode">Chế độ</label>
+                            <select id="practice-mode">
+                                <option value="check-as-you-go">Kiểm tra ngay</option>
+                                <option value="check-at-end">Kiểm tra cuối</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="question-count">Số câu hỏi</label>
+                            <select id="question-count">
+                                <option value="5">5 câu</option>
+                                <option value="10" selected>10 câu</option>
+                                <option value="15">15 câu</option>
+                                <option value="20">20 câu</option>
+                                <option value="all">Tất cả</option>
+                            </select>
+                        </div>
+                        <div class="option-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="shuffle-questions" checked>
+                                <span>Xáo trộn câu hỏi</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="shuffle-answers">
+                                <span>Xáo trộn đáp án</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button id="start-practice" class="start-btn">Bắt đầu ôn tập</button>
+
+                    <div id="quiz-container" class="hidden">
+                        <div class="quiz-header">
+                            <span>Câu <span id="current-question">1</span> / <span id="total-quiz-questions">10</span></span>
+                        </div>
+
+                        <div id="question-area">
+                            <!-- Questions will be inserted here -->
+                        </div>
+
+                        <div class="quiz-actions">
+                            <button id="prev-question" class="hidden">Câu trước</button>
+                            <button id="next-question">Câu tiếp</button>
+                            <button id="submit-quiz" class="hidden">Nộp bài</button>
+                        </div>
+
+                        <div id="quiz-results" class="hidden">
+                            <h3>Kết quả</h3>
+                            <div class="results-summary">
+                                <div class="result-item">
+                                    <span>Điểm số:</span>
+                                    <span id="final-score">0/10</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Tỷ lệ đúng:</span>
+                                    <span id="final-accuracy">0%</span>
+                                </div>
+                            </div>
+                            <button id="review-answers">Xem đáp án</button>
+                            <button id="new-quiz">Làm bài mới</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section id="statistics" class="page">
+                <div class="statistics">
+                    <h2>Thống kê học tập</h2>
+                    <div class="stats-charts">
+                        <div class="chart-container">
+                            <h3>Tiến độ theo thời gian</h3>
+                            <canvas id="progress-chart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Tỷ lệ đúng theo chủ đề</h3>
+                            <canvas id="accuracy-chart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    <div class="detailed-stats">
+                        <h3>Lịch sử làm bài</h3>
+                        <div id="history-list"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

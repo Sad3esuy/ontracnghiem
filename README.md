@@ -1,0 +1,2 @@
+- được tạo ra dành cho mục đích học tập -  ôn tập trắc nghiệm
+- source code không phải của tôi.
