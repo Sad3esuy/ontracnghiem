@@ -20,7 +20,7 @@
         },
         {
           "text": "David Ricardo.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -45,7 +45,7 @@
         },
         {
           "text": "Phương pháp luận.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -66,7 +66,7 @@
         },
         {
           "text": "David Ricardo.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -91,7 +91,7 @@
         },
         {
           "text": "Kinh tế chính trị tầm thường.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -116,7 +116,7 @@
         },
         {
           "text": "5.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -141,7 +141,7 @@
         },
         {
           "text": "Logic và lịch sử.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -166,7 +166,7 @@
         },
         {
           "text": "Tập đoàn kinh tế.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -191,7 +191,7 @@
         },
         {
           "text": "Bản chất, tất yếu, lịch sử.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -216,7 +216,7 @@
         },
         {
           "text": "Quá trình sản xuất, trao đổi, tiêu dùng.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 0,
@@ -1168,7 +1168,7 @@
           "isCorrect": false
         }
       ],
-      "correctAnswer": 0,
+      "correctAnswer": 1,
       "subject": "Bài2-2",
       "difficulty": "Trung bình"
     },
@@ -1368,7 +1368,7 @@
           "isCorrect": true
         }
       ],
-      "correctAnswer": 2,
+      "correctAnswer": 3,
       "subject": "Bài2-2",
       "difficulty": "Trung bình"
     },
@@ -2043,7 +2043,7 @@
           "isCorrect": false
         }
       ],
-      "correctAnswer": 0,
+      "correctAnswer": 2,
       "subject": "Bài2-3",
       "difficulty": "Trung bình"
     },
@@ -2418,7 +2418,7 @@
           "isCorrect": false
         }
       ],
-      "correctAnswer": 3,
+      "correctAnswer": 1,
       "subject": "Bài2-3",
       "difficulty": "Trung bình"
     },
@@ -2543,7 +2543,7 @@
           "isCorrect": false
         }
       ],
-      "correctAnswer": 3,
+      "correctAnswer": 2,
       "subject": "Bài2-4",
       "difficulty": "Trung bình"
     },
@@ -2718,7 +2718,7 @@
           "isCorrect": false
         }
       ],
-      "correctAnswer": 3,
+      "correctAnswer": 0,
       "subject": "Bài2-4",
       "difficulty": "Trung bình"
     },
