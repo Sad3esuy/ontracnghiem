@@ -168,7 +168,16 @@ D. Biện chứng duy vật
 
                     <div id="quiz-container" class="hidden">
                         <div class="quiz-header">
-                            <span>Câu <span id="current-question">1</span> / <span id="total-quiz-questions">10</span></span>
+                            <div class="quiz-progress">
+                                <span class="question-counter">Câu <span id="current-question">1</span> / <span id="total-quiz-questions">10</span></span>
+                                <div class="quiz-timer">
+                                    <span class="timer-icon">⏱️</span>
+                                    <span id="timer-display">00:00</span>
+                                </div>
+                            </div>
+                            <button id="back-to-setup" class="back-btn" title="Quay lại chọn chế độ">
+                                ← Quay lại
+                            </button>
                         </div>
 
                         <div id="question-area">

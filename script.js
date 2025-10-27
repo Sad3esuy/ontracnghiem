@@ -468,7 +468,8 @@ class QuizApp {
 
         this.showQuizInterface();
         this.displayCurrentQuestion(options.shuffleAnswers);
-        // Timer removed
+        this.startTimer();
+        this.setupBackToSetup();
     }
 
     selectQuestions(count, shuffle) {
@@ -627,13 +628,14 @@ class QuizApp {
     }
 
     showQuizResults() {
-        // Timer removed
+        this.stopTimer();
 
         const correctAnswers = this.currentQuiz.reduce((count, q, index) => {
             return count + (this.userAnswers[index] === q.correctAnswer ? 1 : 0);
         }, 0);
 
         const accuracy = Math.round((correctAnswers / this.currentQuiz.length) * 100);
+        const timeSpent = Math.round((new Date() - this.quizStartTime) / 1000);
 
         // Update results display
         document.getElementById('final-score').textContent = `${correctAnswers}/${this.currentQuiz.length}`;
@@ -648,8 +650,8 @@ class QuizApp {
         // Show results
         document.getElementById('quiz-results').classList.remove('hidden');
 
-        // Save to history (without time)
-        this.saveQuizToHistory(correctAnswers, this.currentQuiz.length, 0);
+        // Save to history
+        this.saveQuizToHistory(correctAnswers, this.currentQuiz.length, timeSpent);
 
         // Setup review and new quiz buttons - remove old listeners
         const reviewBtn = document.getElementById('review-answers');
@@ -759,9 +761,12 @@ class QuizApp {
 
     // Timer
     startTimer() {
+        const timerDisplay = document.getElementById('timer-display');
+        if (!timerDisplay) return;
+        
         this.timerInterval = setInterval(() => {
             const elapsed = Math.round((new Date() - this.quizStartTime) / 1000);
-            document.getElementById('timer').textContent = this.formatTime(elapsed);
+            timerDisplay.textContent = this.formatTime(elapsed);
         }, 1000);
     }
 
@@ -776,6 +781,23 @@ class QuizApp {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    setupBackToSetup() {
+        const backBtn = document.getElementById('back-to-setup');
+        if (!backBtn) return;
+
+        // Remove existing listener
+        const newBackBtn = backBtn.cloneNode(true);
+        backBtn.parentNode.replaceChild(newBackBtn, backBtn);
+
+        // Add fresh listener
+        newBackBtn.addEventListener('click', () => {
+            if (confirm('Bạn có chắc muốn quay lại? Tiến trình hiện tại sẽ bị mất!')) {
+                this.stopTimer();
+                this.resetQuiz();
+            }
+        });
     }
 
     // Statistics
@@ -844,10 +866,11 @@ class QuizApp {
         } else {
             activityList.innerHTML = recentActivity.map(item => {
                 const date = new Date(item.date).toLocaleDateString('vi-VN');
+                const timeStr = item.timeSpent ? ` - ${this.formatTime(item.timeSpent)}` : '';
                 return `
                     <div class="history-item">
                         <div class="history-info">
-                            <div class="history-date">${date}</div>
+                            <div class="history-date">${date}${timeStr}</div>
                             <div class="history-details">${item.correct}/${item.total} câu đúng (${item.accuracy}%)</div>
                         </div>
                         <div class="history-score">${item.accuracy}%</div>
@@ -933,10 +956,12 @@ class QuizApp {
         } else {
             historyList.innerHTML = this.statistics.history.map(item => {
                 const date = new Date(item.date).toLocaleDateString('vi-VN');
+                const time = new Date(item.date).toLocaleTimeString('vi-VN', {hour: '2-digit', minute: '2-digit'});
+                const timeStr = item.timeSpent ? ` - ${this.formatTime(item.timeSpent)}` : '';
                 return `
                     <div class="history-item">
                         <div class="history-info">
-                            <div class="history-date">${date}</div>
+                            <div class="history-date">${date} ${time}${timeStr}</div>
                             <div class="history-details">${item.correct}/${item.total} câu đúng</div>
                         </div>
                         <div class="history-score">${item.accuracy}%</div>
