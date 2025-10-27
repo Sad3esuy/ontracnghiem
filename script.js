@@ -14,7 +14,12 @@ class QuizApp {
         this.init();
     }
 
-    init() {
+    async init() {
+        // Tự động load dữ liệu từ file JSON nếu localStorage trống
+        if (this.questions.length === 0) {
+            await this.autoLoadBackupData();
+        }
+        
         this.setupNavigation();
         this.setupSubjectManagement();
         this.setupQuestionInput();
@@ -22,6 +27,36 @@ class QuizApp {
         this.setupBackup();
         this.updateDashboard();
         this.setupStatistics();
+    }
+
+    async autoLoadBackupData() {
+        try {
+            const response = await fetch('data/ktct/quiz-backup-2025-10-27.json');
+            if (!response.ok) {
+                console.log('Không tìm thấy file backup, sử dụng dữ liệu trống');
+                return;
+            }
+            
+            const data = await response.json();
+            
+            // Validate data structure
+            if (data.questions && data.subjects) {
+                this.questions = data.questions;
+                this.subjects = data.subjects;
+                if (data.statistics) {
+                    this.statistics = data.statistics;
+                }
+
+                // Save to localStorage
+                this.saveQuestions();
+                this.saveSubjects();
+                this.saveStatistics();
+
+                console.log(`Đã tự động load ${data.questions.length} câu hỏi từ file backup`);
+            }
+        } catch (error) {
+            console.log('Lỗi khi tự động load dữ liệu:', error.message);
+        }
     }
 
     // Navigation

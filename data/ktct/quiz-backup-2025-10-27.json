@@ -1153,11 +1153,11 @@
       "answers": [
         {
           "text": "Lượng giá trị của một đơn vị hàng hóa tăng",
-          "isCorrect": true
+          "isCorrect": false
         },
         {
           "text": "Lượng giá trị của một đơn vị hàng hóa không đổi",
-          "isCorrect": false
+          "isCorrect": true
         },
         {
           "text": "Lượng giá trị của một đơn vị hàng hóa giảm",
@@ -1361,11 +1361,11 @@
         },
         {
           "text": "Điều hòa, phân bổ các yếu tố sản xuất từ nơi thừa giá thấp đến nơi thiếu giá cao",
-          "isCorrect": true
+          "isCorrect": false
         },
         {
           "text": "Điều hòa, phân bổ các yếu tố sản xuất đầu tư hợp lý, hiệu quả trong nền kinh tế",
-          "isCorrect": false
+          "isCorrect": true
         }
       ],
       "correctAnswer": 2,
@@ -2028,7 +2028,7 @@
       "answers": [
         {
           "text": "Thúc đẩy lực lượng sản xuất phát triển, tăng chất lượng sản phẩm, nâng cao trình độ tay nghề của người lao động",
-          "isCorrect": true
+          "isCorrect": false
         },
         {
           "text": "Là chỉ tiêu tổng hợp về sức mạnh, hiệu quả của doanh nghiệp và của nền kinh tế",
@@ -2036,7 +2036,7 @@
         },
         {
           "text": "Không mang lại hiệu quả kinh tế, nó giống như kéo dài thời gian lao động",
-          "isCorrect": false
+          "isCorrect": true
         },
         {
           "text": "Nâng cao hiệu quả đầu tư sản xuất, giúp cải thiện đời sống người lao động",
@@ -2407,7 +2407,7 @@
         },
         {
           "text": "Vì sản xuất hàng hóa phải gắn liền với thị trường, do thị trường (mua các yếu tố sản xuất, đầu vào) và vì thị trường (tiêu thụ sản phẩm, đầu ra), cho sản xuất",
-          "isCorrect": false
+          "isCorrect": true
         },
         {
           "text": "Vì nếu không có thị trường để đem hàng hóa đến bán thì sản xuất bị ách tắc, đình trệ, khủng hoảng, không thể tiếp tục sản xuất",
@@ -2415,7 +2415,7 @@
         },
         {
           "text": "Vì phải có thị trường để đánh giá, kiểm nghiệm sự phù hợp của các hàng hóa đối với nhu cầu xã hội, từ đó, tiếp tục sản xuất những gì và như thế nào",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 3,
@@ -2536,11 +2536,11 @@
         },
         {
           "text": "Vì tiền, lợi nhuận tối đa, bất chấp thủ đoạn, phương tiện gây tổn hại môi trường sinh thái và an ninh, công bằng xã hội",
-          "isCorrect": false
+          "isCorrect": true
         },
         {
           "text": "Phân hóa giàu nghèo, mâu thuẫn chủ - thợ, phá vỡ truyền thống đoàn kết, nhân ái của dân tộc.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 3,
@@ -2703,7 +2703,7 @@
       "answers": [
         {
           "text": "Lượng giá trị tổng sản phẩm hàng hóa phải phù hợp với sức mua, tức khả năng thanh toán của nền kinh tế, để hàng hóa tiêu thụ trôi chảy",
-          "isCorrect": false
+          "isCorrect": true
         },
         {
           "text": "Sản xuất phát triển, hàng hóa đưa ra thị trường(cung) phải vượt quá nhu cầu xã hội, làm điều kiện tái sản xuất mở rộng, phát triển nền kinh tế",
@@ -2715,7 +2715,7 @@
         },
         {
           "text": "Sản xuất phải phù hợp nhu cầu, nắm bắt nhu cầu để tiến hành sản xuất. Nhu cầu quy định, hướng dẫn sản xuất.",
-          "isCorrect": true
+          "isCorrect": false
         }
       ],
       "correctAnswer": 3,
